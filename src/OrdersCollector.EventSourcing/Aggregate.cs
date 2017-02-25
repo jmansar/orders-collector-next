@@ -17,7 +17,7 @@ namespace OrdersCollector.EventSourcing
             Version = -1;
         }
 
-        protected void RegisterEventApplier<TEvent>(Action<TEvent> eventHandler)
+        protected void RegisterEventHandler<TEvent>(Action<TEvent> eventHandler)
             where TEvent : IEvent
         {
             eventsHandlers.Add(typeof(TEvent), e => eventHandler((TEvent) e));

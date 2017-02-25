@@ -8,8 +8,8 @@ namespace OrdersCollector.EventSourcing.Tests.AggregateTests
         
         public TestAggregate()
         {
-            RegisterEventApplier<TestEvent1>(When);
-            RegisterEventApplier<TestEvent2>(When);
+            RegisterEventHandler<TestEvent1>(When);
+            RegisterEventHandler<TestEvent2>(When);
         }
         
         private void When(TestEvent1 @event)
