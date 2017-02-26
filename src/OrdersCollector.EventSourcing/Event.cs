@@ -1,12 +1,13 @@
 using System;
+using OrdersCollector.Utils.Time;
 
 namespace OrdersCollector.EventSourcing
 {
-    public class Event : IEvent 
+    public abstract class Event : IEvent 
     {
         public Event()
         {
-            Timestamp = DateTimeOffset.UtcNow;
+            Timestamp = Clock.UtcNow;
         }
 
         public DateTimeOffset Timestamp { get; }

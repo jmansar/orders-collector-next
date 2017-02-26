@@ -26,8 +26,6 @@ namespace OrdersCollector.Core.Orders.Models
 
         public Guid Id { get; private set; }
 
-        public DateTimeOffset CreatedDate { get; private set; }
-
         public DateTimeOffset? ExpiryDate { get; private set; }
 
         public OrderStatus Status { get; private set; }
