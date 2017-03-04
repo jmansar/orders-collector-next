@@ -1,16 +1,14 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
-
 
 namespace OrdersCollector.EventSourcing
 {
-    public abstract class Aggregate
+    public abstract class AggregateRoot : IAggregateRoot
     {
         private List<IEvent> uncommitedEvents;
         private Dictionary<Type, Action<IEvent>> eventsHandlers;
 
-        public Aggregate()
+        public AggregateRoot()
         {
             uncommitedEvents = new List<IEvent>();
             eventsHandlers = new Dictionary<Type, Action<IEvent>>();
@@ -22,6 +20,8 @@ namespace OrdersCollector.EventSourcing
         {
             eventsHandlers.Add(typeof(TEvent), e => eventHandler((TEvent) e));
         }
+
+        public Guid Id { get; protected set; }
 
         public int Version { get; private set; }
 
