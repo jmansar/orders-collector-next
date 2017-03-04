@@ -8,12 +8,13 @@ namespace OrdersCollector.Core.Orders.Models
     public class Order : AggregateRoot
     {
         public Order(
+            Guid orderId,
             Guid supplierId,
             Guid groupId
         ) : this()
         {
             RaiseEvent(new OrderCreated(
-                Guid.NewGuid(),
+                orderId,
                 supplierId,
                 groupId
             ));
