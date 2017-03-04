@@ -5,9 +5,9 @@ using OrdersCollector.EventSourcing;
 
 namespace OrdersCollector.Core.Orders.Models
 {
-    public class OrderAggregate : Aggregate
+    public class Order : AggregateRoot
     {
-        public OrderAggregate(
+        public Order(
             Guid supplierId,
             Guid groupId
         ) : this()
@@ -19,12 +19,10 @@ namespace OrdersCollector.Core.Orders.Models
             ));
         }
 
-        private OrderAggregate()
+        private Order()
         {
             RegisterEventHandler<OrderCreated>(When);
         }
-
-        public Guid Id { get; private set; }
 
         public DateTimeOffset? ExpiryDate { get; private set; }
 

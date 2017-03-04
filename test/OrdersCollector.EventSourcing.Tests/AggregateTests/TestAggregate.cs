@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace OrdersCollector.EventSourcing.Tests.AggregateTests
 {
-    public class TestAggregate : Aggregate
+    public class TestAggregate : AggregateRoot
     {
         private List<IEvent> appliedEvents = new List<IEvent>();
         
