@@ -18,7 +18,6 @@ namespace OrdersCollector.Core.Tests.Orders.CommandHandlers
         public void SetUp()
         {
             repository = Substitute.For<IAggregateRepository<Order>>();
-            repository.Get(Guid.NewGuid()).Returns(new Order(Guid.NewGuid(), Guid.NewGuid()));
         }
 
         [Test]
@@ -48,7 +47,8 @@ namespace OrdersCollector.Core.Tests.Orders.CommandHandlers
             // Assert
             await repository.Received().Save(
                 Arg.Is<Order>(
-                    o => o.GroupId == command.GroupId &&
+                    o => o.Id == command.OrderId &&
+                         o.GroupId == command.GroupId &&
                          o.SupplierId == command.SupplierId));
         }
 

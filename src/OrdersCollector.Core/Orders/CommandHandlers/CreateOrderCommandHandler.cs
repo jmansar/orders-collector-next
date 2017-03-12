@@ -26,7 +26,7 @@ namespace OrdersCollector.Core.Orders.CommandHandlers
 
             // TODO: validate that user has permission to create order
             // in the specified group
-            var order = new Order(message.SupplierId, message.GroupId);
+            var order = new Order(message.OrderId, message.SupplierId, message.GroupId);
             await repository.Save(order);
         }
     }

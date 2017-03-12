@@ -8,31 +8,33 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
 {
     public class ConstructorTestFixture
     {
+        private Guid orderId;
         private Guid supplierId;
         private Guid groupId;
 
         [SetUp]
         public void SetUp()
         {
+            orderId = Guid.NewGuid();
             supplierId = Guid.NewGuid();
             groupId = Guid.NewGuid();
         }
 
         [Test]
-        public void Constructor_WhenInvoked_MustCreateOrderWithGeneratedId()
+        public void Constructor_WhenInvoked_MustCreateOrderWithOrderId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
-            Assert.That(subject.Id, Is.Not.EqualTo(Guid.Empty));
+            Assert.That(subject.Id, Is.EqualTo(orderId));
         }
 
         [Test]
         public void Constructor_WhenInvoked_MustCreateOrderWithSupplierId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             Assert.That(subject.SupplierId, Is.EqualTo(supplierId));
@@ -42,7 +44,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustCreateOrderWithGroupId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             Assert.That(subject.GroupId, Is.EqualTo(groupId));
@@ -52,7 +54,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustCreateOrderWithStatusSetToDraft()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             Assert.That(subject.Status, Is.EqualTo(OrderStatus.Draft));
@@ -62,7 +64,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustAddCreatedEventToUncommitedEvents()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             var @event = subject.GetUncommitedChanges().Single();
@@ -73,7 +75,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustAddCreatedEventWithSupplierId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             var @event = subject.GetUncommitedChanges().Single() as OrderCreated;
@@ -84,7 +86,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustAddCreatedEventWithGroupId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             var @event = subject.GetUncommitedChanges().Single() as OrderCreated;
@@ -95,7 +97,7 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
         public void Constructor_WhenInvoked_MustAddCreatedEventWithOrderId()
         {
             // Arrange, Act
-            var subject = new Order(supplierId, groupId);
+            var subject = new Order(orderId, supplierId, groupId);
 
             // Assert
             var @event = subject.GetUncommitedChanges().Single() as OrderCreated;
