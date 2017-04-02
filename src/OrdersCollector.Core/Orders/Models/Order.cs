@@ -7,6 +7,8 @@ namespace OrdersCollector.Core.Orders.Models
 {
     public class Order : AggregateRoot
     {
+        private List<OrderItem> items = new List<OrderItem>();
+
         public Order(
             Guid orderId,
             Guid supplierId,
@@ -23,6 +25,7 @@ namespace OrdersCollector.Core.Orders.Models
         private Order()
         {
             RegisterEventHandler<OrderCreated>(When);
+            RegisterEventHandler<OrderItemAdded>(When);
         }
 
         public DateTimeOffset? ExpiryDate { get; private set; }
@@ -33,7 +36,29 @@ namespace OrdersCollector.Core.Orders.Models
 
         public Guid SupplierId { get; private set; }
 
-        public IEnumerable<OrderItem> Items { get; }
+        public IReadOnlyCollection<OrderItem> Items => items; 
+
+        public void AddOrderItem(string content, Guid userId)
+        {
+            if (content == null)
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            RaiseEvent(new OrderItemAdded(
+                Id,
+                content,
+                userId
+            ));
+        }
+
+        private void When(OrderItemAdded @event)
+        {
+            items.Add(new OrderItem(
+                @event.Content,
+                @event.UserId
+            ));
+        }
 
         private void When(OrderCreated @event)
         {
