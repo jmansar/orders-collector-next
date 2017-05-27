@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <DebugType>portable</DebugType>
     <AssemblyName>OrdersCollector.Core.Tests</AssemblyName>
@@ -10,16 +8,14 @@
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.4;portable-net451+win8</PackageTargetFallback>
     <RuntimeFrameworkVersion>1.1.1</RuntimeFrameworkVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="../../src/OrdersCollector.Core/OrdersCollector.Core.csproj" />
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.8.0-alpha1" />
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
     <PackageReference Include="NUnit" Version="3.6.1" />
-    <PackageReference Include="NUnitLite" Version="3.6.1" />
     <PackageReference Include="NSubstitute" Version="2.0.2" />
   </ItemGroup>
-
 </Project>
