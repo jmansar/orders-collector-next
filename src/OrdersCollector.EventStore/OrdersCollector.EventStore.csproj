@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EventStore.ClientAPI.NetCore" Version="4.0.0-alpha-1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrdersCollector.EventSourcing\OrdersCollector.EventSourcing.csproj" />
+  </ItemGroup>
+</Project>
