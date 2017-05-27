@@ -4,6 +4,10 @@ namespace OrdersCollector.EventSourcing
 {
     public interface IEvent
     {
-         DateTimeOffset Timestamp { get; }
+        Guid EventId { get; }
+
+        string EventType { get; }
+        
+        DateTimeOffset Timestamp { get; }
     }
 }
