@@ -3,9 +3,9 @@ using OrdersCollector.EventSourcing;
 
 namespace OrdersCollector.Core.Suppliers.Events
 {
-    public class SupplierCreated : Event
+    public class SupplierAdded : Event
     {
-        public SupplierCreated(
+        public SupplierAdded(
             Guid supplierInfoId,
             string name
         )
