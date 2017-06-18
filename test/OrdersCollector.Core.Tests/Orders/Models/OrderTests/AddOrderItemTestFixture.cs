@@ -11,7 +11,6 @@ namespace OrdersCollector.Core.Tests.Orders.Models.OrderTests
     public class AddOrderItemTestFixture
     {
         private Guid userId;
-        private string content;
 
         [SetUp]
         public void SetUp()
